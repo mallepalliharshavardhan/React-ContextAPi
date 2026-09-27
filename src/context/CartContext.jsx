@@ -3,6 +3,13 @@ const CartContext = createContext();
 
 export function CartProvider({children}){
     const[cart,setCart] = useState([]);
+    const [search,setSearch] = useState('')
+
+    function filterSearch(product){
+        const visibleProducts= ProductList.filter((product)=>{
+            product.title.toLowerCase().includes(search.trim().toLowerCase())
+        })
+    }
 
     function addToCart(product){
         setCart(prev=>{
